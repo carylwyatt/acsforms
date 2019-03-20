@@ -1,4 +1,9 @@
+//make sure to comment this out for testing in browser
+var $ = require('jquery');
 
+function helloWorld() {
+  return 'hello world';
+};
 		// JQuery functions.
 		$(function() { 	
 			// Check to see if any Voyager Access has been requested
@@ -495,3 +500,5 @@
 			});
 
     });
+
+module.exports.helloWorld = helloWorld;
