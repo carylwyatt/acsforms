@@ -545,6 +545,8 @@ module.exports.helloWorld = helloWorld;
         it('should get text from selected department option', function () {
           // initiate change, select option for "Annex Services"
           $('#field8 option:nth-child(3)').attr('selected', 'selected');
+
+          // `department` is from line 391
           // must include this line becuase this variable is declared inside a function
           // grrrr hoisting
           // how to get access to this variable outside of the scope???
