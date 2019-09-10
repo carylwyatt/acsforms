@@ -1,12 +1,4 @@
 //make sure to comment this out for testing in browser
-var expect = require('chai').expect,
-  { JSDOM } = require('jsdom');
-
-const jsdom = new JSDOM('<!doctype html><body><div>1</div></body></html>');
-const {window} = jsdom;
-const {document} = window;
-global.window = window;
-global.document = document;
 var $ = require('jquery');
 
 function helloWorld() {
@@ -49,7 +41,7 @@ function helloWorld() {
 		});
 
 
-   $(document).ready(function($){
+   jQuery(document).ready(function($){
 
 		//Mappings JSON object.  The person maintaining department mappings should use Excel to export a CSV file with departments as the first column and department groups associated with that department in subsequent columns.  
 
@@ -390,9 +382,8 @@ function helloWorld() {
 			//Get the selected department
 			var department = $("select option:selected" )[0].textContent;
 
-
-      //Uncheck currently checked departmental boxes
-      $('#collapse4 .checkbox input:checked').each(function(){
+			//Uncheck currently checked departmental boxes
+			$('#collapse4 .checkbox input:checked').each(function(){
 			    this.checked = false;
 			});
 			
@@ -511,49 +502,3 @@ function helloWorld() {
     });
 
 module.exports.helloWorld = helloWorld;
-      describe('department dropdown function', () => {
-        //set up HTML
-          document.body.innerHTML =
-            '<div>' +
-              '<fieldset class="form-group">' +
-                '<label for="field8">Department</label>' +
-                '<select required class="form-control" name="OBKey_Department_1" id="field8">' +
-          
-									'<option value="" disabled selected hidden>Choose A Department</option>' +
-									'<option value="williams">A.S. Williams III Americana Collection</option>' +
-									'<option value="annex">Annex Services</option>'+
-									'<option value="acs">Area Computing Services</option>'+
-									'<option value="bruno">Bruno Business Library</option>'+
-									'<option value="businessoffice">Business Office</option>'+
-									'<option value="circulation">Circulation Department</option>'+
-									'<option value="dhc">Digital Humanities Center</option>'+
-									'<option value="gis">Gorgas Information Services</option>'+
-									'<option value="govdocs">Government Documents</option>'+
-									'<option value="hoole">Hoole Special Collections</option>'+
-									'<option value="ir">Institutional Repository Services</option>'+
-									'<option value="ill">Interlibrary Loan</option>'+
-									'<option value="libadmin">Library Administration</option>'+
-									'<option value="mclure">McLure Education Library</option>'+
-									'<option value="metadata">Metadata &amp; Digital Services</option>'+
-									'<option value="acquisitions">Resource Acquisitions &amp; Discovery</option>'+
-									'<option value="rodgers">Rodgers Library for Science and Engineering</option>'+
-									'<option value="smc">Sanford Media Center</option>'+
-									'<option value="webservices">Web Technologies and Development</option>'+
-									'</select>'+
-        '</fieldset>' +
-          '</div>';
-        it('should get text from selected department option', function () {
-          // initiate change, select option for "Annex Services"
-          $('#field8 option:nth-child(3)').attr('selected', 'selected');
-          // must include this line becuase this variable is declared inside a function
-          // grrrr hoisting
-          // how to get access to this variable outside of the scope???
-          var department = $("select option:selected" )[0].textContent;
-
-          var expected = 'Annex Services';
-          var actual = department;
-
-          expect(actual).to.eql(expected);
-        });
-
-      });
